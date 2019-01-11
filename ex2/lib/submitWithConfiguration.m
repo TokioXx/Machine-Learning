@@ -41,17 +41,10 @@ end
 
 function [email token] = promptToken(email, existingToken, tokenFile)
   if (~isempty(email) && ~isempty(existingToken))
-    prompt = sprintf( ...
-      'Use token from last successful submission (%s)? (Y/n): ', ...
-      email);
-    reenter = input(prompt, 's');
 
-    if (isempty(reenter) || reenter(1) == 'Y' || reenter(1) == 'y')
       token = existingToken;
       return;
-    else
-      delete(tokenFile);
-    end
+
   end
   email = input('Login (email address): ', 's');
   token = input('Token: ', 's');
